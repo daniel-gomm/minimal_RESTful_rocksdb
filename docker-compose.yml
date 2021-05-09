@@ -3,7 +3,7 @@ version: "3.7"
 
 services:
   rocksdb:
-    image: rocksdb/0.0.1:latest
+    image: daniel88279/restful_rocksdb:0.0.1
     environment:
       - ROCKSDB_PATH=/etc/rocksdb
     volumes:
