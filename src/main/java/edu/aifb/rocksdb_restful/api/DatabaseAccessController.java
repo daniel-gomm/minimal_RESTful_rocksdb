@@ -61,7 +61,12 @@ public class DatabaseAccessController {
         Map<String, String> ret = new HashMap<>();
         KeyValueStore<byte[], byte[]> keyValueStore = manager.getKeyValueStore(column);
         for(String key : keys){
-            ret.put(key, new String(keyValueStore.get(key.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8));
+            byte[] value = keyValueStore.get(key.getBytes(StandardCharsets.UTF_8));
+            if(value == null){
+                ret.put(key, "Data unavailable");
+            }else {
+                ret.put(key, new String(value, StandardCharsets.UTF_8));
+            }
         }
         return ret;
     }
